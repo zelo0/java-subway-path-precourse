@@ -42,11 +42,10 @@ public class GraphRepository {
         graphByTime.setEdgeWeight(graphByTime.addEdge("양재역", "양재시민의숲역"), 3);
     }
 
-    public static WeightedMultigraph<String, DefaultWeightedEdge> getGraphByDistance() {
-        return graphByDistance;
-    }
-
-    public static WeightedMultigraph<String, DefaultWeightedEdge> getGraphByTime() {
+    public static WeightedMultigraph<String, DefaultWeightedEdge> getGraphByCondition(ConditionShort conditionShort) {
+        if (conditionShort == ConditionShort.DISTANCE) {
+            return graphByDistance;
+        }
         return graphByTime;
     }
 

@@ -1,5 +1,7 @@
 package subway;
 
+import subway.domain.ConditionShort;
+
 public class PathService {
 
     private final InputTaker inputTaker;
@@ -20,11 +22,13 @@ public class PathService {
                 if (!Validator.isDifferentNames(startStation, endStation)) {
                     continue;
                 }
+                // TODO 구현 필요
                 if (!Validator.canGoThere(startStation, endStation)) {
                     continue;
                 }
 
-                graphService.printShortestPath(startStation, endStation, input);
+                graphService.printShortestPath(startStation, endStation, ConditionShort.getByValue(input));
+                break;
             }
             if (input.equals("B")) {
                 break;
