@@ -11,7 +11,7 @@ public class InputTaker {
     }
 
     public String takeInput(String message) {
-        System.out.println(message);
+        System.out.println("\n" + message);
         return scanner.nextLine();
     }
 }

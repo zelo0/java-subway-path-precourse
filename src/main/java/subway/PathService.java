@@ -1,7 +1,7 @@
 package subway;
 
 public class PathService {
-    
+
     private final InputTaker inputTaker;
 
     public PathService(InputTaker inputTaker) {
@@ -9,12 +9,23 @@ public class PathService {
     }
 
     public void run() {
+        GraphService graphService = new GraphService();
+
         while (true) {
             printPathMenu();
             String input = inputTaker.takeInput("## 원하는 기능을 선택하세요.");
-//            if (input.equals("1")) {
-//
-//            }
+            if (input.equals("1") || input.equals("2")) {
+                String startStation = inputTaker.takeInput("## 출발역을 입력하세요.");
+                String endStation = inputTaker.takeInput("## 도착역을 입력하세요.");
+                if (!Validator.isDifferentNames(startStation, endStation)) {
+                    continue;
+                }
+                if (!Validator.canGoThere(startStation, endStation)) {
+                    continue;
+                }
+
+                graphService.printShortestPath(startStation, endStation, input);
+            }
             if (input.equals("B")) {
                 break;
             }
@@ -22,5 +33,9 @@ public class PathService {
     }
 
     private void printPathMenu() {
+        System.out.println("## 경로 기준\n" +
+                "1. 최단 거리\n" +
+                "2. 최소 시간\n" +
+                "B. 돌아가기");
     }
 }
